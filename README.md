@@ -1,4 +1,4 @@
-Role Name
+tecris.maven
 =========
 
 Maven ansible role
