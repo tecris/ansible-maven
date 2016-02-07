@@ -20,7 +20,8 @@ Installation
 
 Example Playbook
 ----------------
-
+```
  - hosts: all
    roles:
      - { role: tecris.maven, maven_major: 3, maven_release: 3.3.9 }
+``` 
