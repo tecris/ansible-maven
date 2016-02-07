@@ -6,7 +6,7 @@ Maven ansible role
 Role Variables
 --------------
 
-Defined in defaults/main.yml
+Defined in [defaults/main.yml](defaults/main.yml)
 
 |**Variable**  | *Description* |
 | ------------- | ------------- |
