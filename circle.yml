@@ -8,6 +8,5 @@ dependencies:
   override:
     - docker info
     - docker version
-    
-    - docker build  -f test/Dockerfile.ubuntu14.04  -t java_trusty   .
+
     - docker build --rm=true --file=tests/Dockerfile.ubuntu14.04 --tag=ubuntu-14.04:ansible tests
