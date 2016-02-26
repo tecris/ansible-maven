@@ -15,7 +15,7 @@ test:
   override:
     - container_id=$(mktemp)
     # Run container in detached state
-    - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/apache-maven:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
+    - 'docker run --detach --volume="${PWD}":/etc/ansible/roles/apache-maven:ro ubuntu-14.04:ansible "${init}" > "${container_id}"'
 
     # Ansible syntax check.
     - 'docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/apache-maven/tests/test.yml --syntax-check'
