@@ -11,22 +11,23 @@ dependencies:
 
     - docker build --rm=true --file=tests/Dockerfile.ubuntu14.04 --tag=ubuntu-14.04:ansible tests
     
-script:
-  - container_id=$(mktemp)
+test:
+  override:
+    - container_id=$(mktemp)
     # Run container in detached state
-  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/apache-maven:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
+    - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/apache-maven:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
 
-  # Ansible syntax check.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/apache-maven/tests/test.yml --syntax-check'
+    # Ansible syntax check.
+    - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/apache-maven/tests/test.yml --syntax-check'
 
-  # Test role.
-  - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/apache-maven/tests/test.yml'
+    # Test role.
+    - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/apache-maven/tests/test.yml'
 
-  # Test role idempotence.
-  - >
-    sudo docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/apache-maven/tests/test.yml
-    | grep -q 'changed=0.*failed=0'
-    && (echo 'Idempotence test: pass' && exit 0)
-    || (echo 'Idempotence test: fail' && exit 1)
-  # Clean up
-  - 'sudo docker stop "$(cat ${container_id})"'
+    # Test role idempotence.
+    - >
+      sudo docker exec "$(cat ${container_id})" ansible-playbook /etc/ansible/roles/apache-maven/tests/test.yml
+      | grep -q 'changed=0.*failed=0'
+      && (echo 'Idempotence test: pass' && exit 0)
+      || (echo 'Idempotence test: fail' && exit 1)
+    # Clean up
+    - 'sudo docker stop "$(cat ${container_id})"'
