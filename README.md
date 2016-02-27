@@ -1,7 +1,8 @@
-tecris.maven
-=========
+# Maven ansible role
 
-Maven ansible role
+
+[![Build Status](https://travis-ci.org/tecris/ansible-maven.svg?branch=master)](https://travis-ci.org/tecris/ansible-maven)
+
 
 Role Variables
 --------------
