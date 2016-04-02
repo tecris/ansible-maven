@@ -9,11 +9,11 @@ Role Variables
 
 [defaults/main.yml](defaults/main.yml)
 
-|*Variable*  | *Description* |
-| ------------- | ------------- |
-| maven_major | MAJOR version as defined in [semver](http://semver.org/) |
-| maven_version | Semantic version|
-| maven_home_parent_directory | MAVEN_HOME parent directory|
+|*Variable*  | *Default Value* |*Description* |
+| --- | --- | --- |
+| maven_major | 3 | MAJOR version as defined in [semver](http://semver.org/) |
+| maven_version | 3.3.9 | Semantic version|
+| maven_home_parent_directory | /opt | MAVEN_HOME parent directory|
 
 Installation
 ------------
