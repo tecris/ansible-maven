@@ -11,8 +11,8 @@ Role Variables
 
 |*Variable*  | *Default Value* |*Description* |
 | --- | --- | --- |
-| maven_major | 3 | MAJOR version as defined in [semver](http://semver.org/) |
-| maven_version | 3.3.9 | Semantic version|
+| maven_major | 3 | MAJOR [version](http://semver.org/) |
+| maven_version | 3.3.9 | Version number|
 | maven_home_parent_directory | /opt | MAVEN_HOME parent directory|
 
 Installation
