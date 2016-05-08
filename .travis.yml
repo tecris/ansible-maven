@@ -42,3 +42,9 @@ script:
 
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
+
+# ansible-galaxy login  
+# ansible-galaxy setup travis tecris https://github.com/tecris/ansible-maven travis_token  
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
+  
