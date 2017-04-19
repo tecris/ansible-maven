@@ -5,7 +5,11 @@
     src: "http://www.apache.org/dist/maven/maven-{{ maven_major }}/{{ maven_version }}/binaries/apache-maven-{{ maven_version }}-bin.tar.gz"
     dest: "{{maven_home_parent_directory}}"
     copy: no
-- name: Configure maven
+- name: Remove old path configuration
+  file:
+    path: /etc/profile.d/maven.sh
+    state: absent
+- name: Maven path configuration
   lineinfile:
     dest: /etc/profile.d/maven.sh
     line: "{{ item.line }}"
