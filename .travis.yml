@@ -12,7 +12,7 @@ env:
     init: /sbin/init
     run_opts: ""
   - distribution: ubuntu
-    version: 16.10
+    version: "16.10"
     init: /sbin/init
     run_opts: ""
 
