@@ -4,16 +4,20 @@ sudo: required
 
 env:
   - distribution: ubuntu
-    version: 14.04
+    version: "14.04"
     init: /sbin/init
     run_opts: ""
   - distribution: ubuntu
-    version: 16.04
+    version: "16.04"
     init: /sbin/init
     run_opts: ""
   - distribution: ubuntu
     version: "16.10"
     init: /sbin/init
+    run_opts: ""
+  - distribution: ubuntu
+    version: "17.04"
+    init: /lib/systemd/systemd
     run_opts: ""
 
 services:
