@@ -13,7 +13,7 @@ env:
     run_opts: ""
   - distribution: ubuntu
     version: "16.10"
-    init: /lib/systemd/systemd
+    init: /usr/bin/systemd-docker
     run_opts: ""
 
 services:
