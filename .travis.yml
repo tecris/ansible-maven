@@ -13,8 +13,8 @@ env:
     run_opts: ""
   - distribution: ubuntu
     version: "16.10"
-    init: /sbin/init
-    run_opts: ""
+    init: /lib/systemd/systemd
+    run_opts: "--privileged --volume=/sys/fs/cgroup:/sys/fs/cgroup:ro"
   - distribution: ubuntu
     version: "17.04"
     init: /lib/systemd/systemd
