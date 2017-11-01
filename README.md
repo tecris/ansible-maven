@@ -12,20 +12,22 @@ Role Variables
 |*Variable*  | *Default Value* |*Description* |
 | --- | --- | --- |
 | maven_major | 3 | MAJOR [version](http://semver.org/) |
-| maven_version | 3.5.0 | Version number|
+| maven_version | 3.5.2 | Version number|
 | maven_home_parent_directory | /opt | MAVEN_HOME parent directory|
 
 Installation
 ------------
 
- `$ ansible-galaxy install tecris.maven`
+ `$ ansible-galaxy install tecris.maven             # latest version`
+ 
+ `$ ansible-galaxy install tecris.maven,17.10.28    # specific version`
 
 Example Playbook
 ----------------
 ```
  - hosts: all
    roles:
-     - { role: tecris.maven, maven_major: 3, maven_release: 3.5.0, maven_home_parent_directory: /opt }
+     - { role: tecris.maven, maven_major: 3, maven_release: 3.5.2, maven_home_parent_directory: /opt }
 ```
 Tests
 -----
