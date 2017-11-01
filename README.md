@@ -18,7 +18,8 @@ Role Variables
 Installation
 ------------
 
- `$ ansible-galaxy install tecris.maven`
+ `$ ansible-galaxy install tecris.maven             # latest version`
+ `$ ansible-galaxy install tecris.maven,17.10.28    # specific version`
 
 Example Playbook
 ----------------
