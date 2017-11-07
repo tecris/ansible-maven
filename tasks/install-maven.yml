@@ -11,6 +11,7 @@
     dest: '{{ maven_download_dest }}'
     url_username: '{{ maven_download_username }}'
     url_password: '{{ maven_download_password }}'
+  when: maven_installed.stat.exists != True
 
 - name: Unarchive Maven Binaries
   unarchive:
