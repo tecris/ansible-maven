@@ -8,14 +8,14 @@
 - name: Downloading Maven Binaries
   get_url:
     url: '{{ maven_download_url }}'
-    dest: '{{ maven_download_dest }}'
+    dest: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
     url_username: '{{ maven_download_username }}'
     url_password: '{{ maven_download_password }}'
   when: maven_installed.stat.exists != True
 
 - name: Unarchive Maven Binaries
   unarchive:
-    src: "{{ maven_download_dest }}"
+    src: "{{ maven_home_parent_directory }}/{{ maven_file_name }}"
     dest: "{{ maven_home_parent_directory }}"
     copy: no
   when: maven_installed.stat.exists != True
@@ -38,4 +38,4 @@
 - name: Cleaning Up
   file:
     state: absent
-    path: "{{ maven_download_dest }}"
+    path: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
