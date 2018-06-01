@@ -17,7 +17,7 @@ Example Playbook
 ```
  - hosts: all
    roles:
-     - { role: tecris.maven, maven_major: 3, maven_release: 3.5.3, maven_home_parent_directory: /opt }
+     - { role: tecris.maven, maven_major: 3, maven_version: 3.5.3, maven_home_parent_directory: /opt }
 ```
 
 Role Variables
