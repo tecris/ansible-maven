@@ -2,6 +2,12 @@
 sudo: required
 
 env:
+  - distribution: ubuntu
+    version: "14.04"
+  - distribution: ubuntu
+    version: "16.04"
+  - distribution: ubuntu
+    version: "18.04"
   - distribution: debian
     version: "9"
 
