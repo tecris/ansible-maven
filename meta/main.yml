@@ -131,15 +131,15 @@ galaxy_info:
   #  versions:
   #  - all
   #  - any
-  #- name: Debian
-  #  versions:
+  - name: Debian
+    versions:
   #  - all
   #  - etch
   #  - jessie
   #  - lenny
   #  - squeeze
   #  - wheezy
-
+    - stretch
   galaxy_tags:
     - development:maven
     # List tags for your role here, one per line. A tag is
