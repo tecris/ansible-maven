@@ -1,16 +1,13 @@
 ---
 sudo: required
 
-
 env:
   - distribution: ubuntu
     version: "14.04"
-    init: /sbin/init
-    run_opts: ""
   - distribution: ubuntu
     version: "16.04"
-    init: /sbin/init
-    run_opts: ""
+  - distribution: ubuntu
+    version: "18.04"
 
 services:
   - docker
@@ -25,7 +22,7 @@ before_install:
 script:
   - container_id=$(mktemp)
     # Run container in detached state
-  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/apache-maven:ro ${run_opts} ${distribution}-${version}:ansible "${init}" > "${container_id}"'
+  - 'sudo docker run --detach --volume="${PWD}":/etc/ansible/roles/apache-maven:ro ${distribution}-${version}:ansible > "${container_id}"'
 
   # Ansible syntax check.
   - 'sudo docker exec --tty "$(cat ${container_id})" env TERM=xterm ansible-playbook /etc/ansible/roles/apache-maven/tests/test.yml --syntax-check'
@@ -43,8 +40,7 @@ script:
   # Clean up
   - 'sudo docker stop "$(cat ${container_id})"'
 
-# ansible-galaxy login  
-# ansible-galaxy setup travis tecris https://github.com/tecris/ansible-maven travis_token  
+# ansible-galaxy login
+# ansible-galaxy setup travis tecris https://github.com/tecris/ansible-maven travis_token
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
-  
