@@ -1,7 +1,7 @@
 galaxy_info:
   author: tecris
   description: Maven ansible role
-  company: your company (optional)
+  company: n/a
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
@@ -14,7 +14,7 @@ galaxy_info:
   # - GPLv3
   # - Apache
   # - CC-BY
-  license: license (GPLv2, CC-BY, etc)
+  license: FREE, NO LICENSE
 
   min_ansible_version: 2.4
 
