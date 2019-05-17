@@ -11,14 +11,14 @@
     dest: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
     url_username: '{{ maven_download_username }}'
     url_password: '{{ maven_download_password }}'
-  when: maven_installed.stat.exists != True
+  when: !maven_installed.stat.exists
 
 - name: Unarchive Maven Binaries
   unarchive:
     src: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
     dest: '{{ maven_home_parent_directory }}'
     copy: no
-  when: maven_installed.stat.exists != True
+  when: !maven_installed.stat.exists
 
 - name: Remove old path configuration
   file:
