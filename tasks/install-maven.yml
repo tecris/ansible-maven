@@ -32,7 +32,7 @@
     create: yes
     state: present
   with_items:
-    - { line: 'M2_HOME={{maven_home_parent_directory}}/apache-maven-{{maven_version}}' }
+    - { line: 'M2_HOME={{ maven_home_parent_directory }}/apache-maven-{{ maven_version }}' }
     - { line: 'PATH=$PATH:$M2_HOME/bin' }
 
 - name: Cleaning Up
