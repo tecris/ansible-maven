@@ -113,7 +113,7 @@ galaxy_info:
   #  - quantal
   #  - raring
   #  - saucy
-    - trusty
+  #  - trusty
   #  - utopic
   #  - vivid
     - xenial
