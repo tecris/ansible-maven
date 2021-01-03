@@ -139,7 +139,7 @@ galaxy_info:
   #  - lenny
   #  - squeeze
   #  - wheezy
-    - stretch
+  #  - stretch
   galaxy_tags:
     - development
     - maven

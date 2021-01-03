@@ -6,8 +6,6 @@ env:
     version: "16.04"
   - distribution: ubuntu
     version: "18.04"
-  - distribution: debian
-    version: "9"
 
 services:
   - docker
