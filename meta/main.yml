@@ -118,6 +118,7 @@ galaxy_info:
   #  - vivid
     - xenial
     - bionic
+    - focal
   #- name: SLES
   #  versions:
   #  - all
