@@ -34,6 +34,7 @@ Role Variables
 |maven_download_username||see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html) url_username option|
 |maven_download_password||see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html) url_password option|
 
+
 Tests
 -----
 References:
