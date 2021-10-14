@@ -1,7 +1,7 @@
 # Maven ansible role
 
 
-[![Build Status](https://travis-ci.org/tecris/ansible-maven.svg?branch=master)](https://travis-ci.org/tecris/ansible-maven)
+[![Build Status](https://app.travis-ci.com/tecris/ansible-maven.svg?branch=master)](https://app.travis-ci.com/tecris/ansible-maven)
 
 
 
