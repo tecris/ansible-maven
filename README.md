@@ -17,7 +17,7 @@ Example Playbook
 ```
  - hosts: all
    roles:
-     - { role: tecris.maven, maven_major: 3, maven_version: 3.8.2, maven_home_parent_directory: /opt }
+     - { role: tecris.maven, maven_major: 3, maven_version: 3.8.3, maven_home_parent_directory: /opt }
 ```
 
 Role Variables
@@ -28,9 +28,9 @@ Role Variables
 |*Variable*  | *Default Value* |*Description* |
 | --- | --- | --- |
 | maven_major | 3 | MAJOR [version](http://semver.org/) |
-| maven_version | 3.8.2 | Version number|
+| maven_version | 3.8.3 | Version number|
 | maven_home_parent_directory | /opt | MAVEN_HOME parent directory|
-| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.8.2/binaries/apache-maven-3.8.2-bin.tar.gz| If using mirror/proxy (see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html)) |
+| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.8.3/binaries/apache-maven-3.8.3-bin.tar.gz| If using mirror/proxy (see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html)) |
 |maven_download_username||see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html) url_username option|
 |maven_download_password||see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html) url_password option|
 
