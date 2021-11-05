@@ -142,6 +142,7 @@ galaxy_info:
   #  - wheezy
   #  - stretch
     - buster
+    - bullseye
   galaxy_tags:
     - development
     - maven
