@@ -4,6 +4,8 @@ sudo: required
 env:
   - distribution: debian
     version: "10"
+  - distribution: debian
+    version: "11"
   - distribution: ubuntu
     version: "16.04"
   - distribution: ubuntu
