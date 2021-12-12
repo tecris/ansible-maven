@@ -116,7 +116,7 @@ galaxy_info:
   #  - trusty
   #  - utopic
   #  - vivid
-    - xenial
+  #  - xenial
     - bionic
     - focal
   #- name: SLES
