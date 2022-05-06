@@ -10,6 +10,8 @@ env:
     version: "18.04"
   - distribution: ubuntu
     version: "20.04"
+  - distribution: ubuntu
+    version: "22.04"
 
 services:
   - docker
