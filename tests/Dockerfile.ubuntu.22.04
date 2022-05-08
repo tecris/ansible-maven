@@ -10,6 +10,7 @@ RUN \
 		python3-pip \
     software-properties-common \
     git \
+    gpg-agent \
 	&& \
 	pip3 install dumb-init && \
 	apt-get remove -y \
@@ -24,9 +25,10 @@ RUN \
 
 
 RUN \
+  export DEBIAN_FRONTEND=noninteractive && \
   apt-add-repository -y ppa:ansible/ansible && \
   apt-get update && \
-  apt-get install -y ansible
+  apt-get install -y --no-install-recommends ansible
 
 # Install Ansible inventory file
 RUN echo "[local]\nlocalhost ansible_connection=local" > /etc/ansible/hosts
