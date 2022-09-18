@@ -119,6 +119,7 @@ galaxy_info:
   #  - xenial
     - bionic
     - focal
+    - jammy
   #- name: SLES
   #  versions:
   #  - all
