@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .
+platforms:
+  - name: ubuntu_22.04
+    image: org.tecris/ubuntu-22.04-jdk:23.03.26
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+  additional_files_or_dirs:
+    - ../../resources/tests

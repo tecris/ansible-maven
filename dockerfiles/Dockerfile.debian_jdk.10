@@ -1,0 +1,7 @@
+FROM org.tecris/debian_10-systemd:23.03.26
+
+ADD OpenJDK17U-jdk_x64_linux_hotspot_17.0.6_10.tar.gz /opt
+RUN echo "export JAVA_HOME=/opt/jdk-17.0.6+10" > /etc/profile.d/java.sh 
+RUN echo "PATH=/opt/jdk-17.0.6+10/bin:${PATH}" >> /etc/profile.d/java.sh
+
+

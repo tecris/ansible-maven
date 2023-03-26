@@ -1,0 +1,7 @@
+---
+- name: Converge
+  hosts: all
+  tasks:
+    - name: "Include ansible-maven"
+      include_role:
+        name: "tecris.maven"
