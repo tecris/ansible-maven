@@ -4,7 +4,6 @@
 [![Build Status](https://app.travis-ci.com/tecris/ansible-maven.svg?branch=master)](https://app.travis-ci.com/tecris/ansible-maven)
 
 
-
 Installation
 ------------
 
@@ -38,3 +37,31 @@ Role Variables
 Tests
 -----
 * See [molecule](./molecule)
+* How to
+  * Preliminary tasks
+    * Buid molecule docker image
+      ```
+      # git clone https://github.com/tecris/dockerfiles
+      # cd dockerfiles/molecule
+      # ./build_image.sh
+      ```
+    * Build test image (example for `debian 9`)
+      * Step 1
+        ```   
+        # git clone https://github.com/tecris/dockerfiles
+        # cd dockerfiles/systemd/debian-9
+        # ./build_image.sh
+        ```
+      * Step 2 (add jdk to test image)
+        ```   
+        # git clone https://github.com/tecris/ansible-maven
+        # cd ansible-maven/dockerfiles
+        # ./build_image.sh debian 9
+        ```
+  * Run molecule test
+    ```   
+    # git clone https://github.com/tecris/ansible-maven
+    # cd ansible-maven
+    # ./run_molecule.sh
+    # molecule test -s debian_9
+    ```
