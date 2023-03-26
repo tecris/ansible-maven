@@ -1,0 +1,12 @@
+FROM org.tecris/ubuntu_22.04-systemd:23.03.26
+
+
+RUN apt-get install -y wget
+ 
+# https://github.com/adoptium/temurin17-binaries/releases/latest
+RUN wget -P /opt -O /opt/jdk.tar.gz https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.6%2B10/OpenJDK17U-jdk_x64_linux_hotspot_17.0.6_10.tar.gz
+RUN tar xf /opt/jdk.tar.gz -C /opt
+RUN echo "export JAVA_HOME=/opt/jdk-17.0.6+10" > /etc/profile.d/java.sh 
+RUN echo "PATH=/opt/jdk-17.0.6+10/bin:${PATH}" >> /etc/profile.d/java.sh
+
+

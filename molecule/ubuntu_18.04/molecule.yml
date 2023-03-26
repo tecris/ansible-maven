@@ -1,0 +1,13 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+platforms:
+  - name: instance
+    image: org.tecris/ubuntu_18.04-systemd:23.03.26
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra

@@ -1,9 +1,16 @@
 ---
 # tasks file for apache-maven
-- name: Checking if Maven is already installed
-  stat: 
-    path: '{{ maven_home_parent_directory }}/apache-maven-{{ maven_version }}'
+- name: Check whether /etc/profile.d/maven.sh contains "/opt/apache-maven{maven_version}"
+  command: grep -Fxq "M2_HOME=/opt/apache-maven-{{ maven_version }}" /etc/profile.d/maven.sh
   register: maven_installed
+  check_mode: no
+  ignore_errors: yes
+  changed_when: no
+
+- name: Tell the world maven is not installed
+  debug: msg="Maven is not installed"
+  when: maven_installed.rc != 0
+  changed_when: no
 
 - name: Downloading Maven Binaries
   get_url:
@@ -11,19 +18,20 @@
     dest: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
     url_username: '{{ maven_download_username }}'
     url_password: '{{ maven_download_password }}'
-  when: not maven_installed.stat.exists
+  when: maven_installed.rc != 0
 
 - name: Unarchive Maven Binaries
   unarchive:
     src: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
     dest: '{{ maven_home_parent_directory }}'
     copy: no
-  when: not maven_installed.stat.exists
+  when: maven_installed.rc != 0
 
 - name: Remove old path configuration
   file:
     path: /etc/profile.d/maven.sh
     state: absent
+  when: maven_installed.rc != 0
 
 - name: Maven path configuration
   lineinfile:
@@ -34,8 +42,10 @@
   with_items:
     - { line: 'M2_HOME={{ maven_home_parent_directory }}/apache-maven-{{ maven_version }}' }
     - { line: 'PATH=$PATH:$M2_HOME/bin' }
+  when: maven_installed.rc != 0
 
 - name: Cleaning Up
   file:
     state: absent
     path: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
+  when: maven_installed.rc != 0

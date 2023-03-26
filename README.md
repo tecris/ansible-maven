@@ -37,7 +37,4 @@ Role Variables
 
 Tests
 -----
-References:
- - [Ansible role testing](http://www.jeffgeerling.com/blog/testing-ansible-roles-travis-ci-github)
- - [Ansible apache role](https://github.com/geerlingguy/ansible-role-apache)
- - [Testing on different OSs with Docker](https://www.jeffgeerling.com/blog/2016/how-i-test-ansible-configuration-on-7-different-oses-docker)
+* See [molecule](./molecule)
