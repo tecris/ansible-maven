@@ -5,5 +5,5 @@ def test_distribution(host):
     f = host.file("/etc/os-release")
 
     assert f.contains("ID=debian")
-    assert f.contains("VERSION_ID=\"11\"")
+    assert f.contains("VERSION_ID=\"9\"")
 

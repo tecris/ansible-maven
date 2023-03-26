@@ -8,7 +8,7 @@ lint: |
   yamllint .
   ansible-lint .
 platforms:
-  - name: instance
+  - name: ubuntu_18.04
     image: org.tecris/ubuntu-18.04-jdk:23.03.26
     pre_build_image: true
 provisioner:

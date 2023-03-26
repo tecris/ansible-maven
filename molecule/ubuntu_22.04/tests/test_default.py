@@ -6,4 +6,4 @@ def test_distribution(host):
     f = host.file("/etc/lsb-release")
 
     assert f.contains("DISTRIB_ID=Ubuntu")
-    assert f.contains("DISTRIB_RELEASE=20.04")
+    assert f.contains("DISTRIB_RELEASE=22.04")

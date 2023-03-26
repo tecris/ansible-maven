@@ -3,11 +3,17 @@ dependency:
   name: galaxy
 driver:
   name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .
 platforms:
-  - name: instance
-    image: org.tecris/debian_11-systemd:23.03.26
+  - name: debian_11
+    image: org.tecris/debian-11-jdk:23.03.26
     pre_build_image: true
 provisioner:
   name: ansible
 verifier:
   name: testinfra
+  additional_files_or_dirs:
+    - ../../resources/tests

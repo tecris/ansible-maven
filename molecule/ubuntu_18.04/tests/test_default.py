@@ -1,8 +1,9 @@
 """Role testing files using testinfra."""
 
 
-def test_maven_path(host):
-    """Validate maven path."""
-    f = host.file("/etc/profile.d/maven.sh")
+def test_distribution(host):
+    """Validate distribution release."""
+    f = host.file("/etc/lsb-release")
 
-    assert f.contains("M2_HOME=/opt/apache-maven-3.9.0")
+    assert f.contains("DISTRIB_ID=Ubuntu")
+    assert f.contains("DISTRIB_RELEASE=18.04")
