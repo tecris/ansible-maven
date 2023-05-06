@@ -1,22 +1,31 @@
 """Role testing files using testinfra."""
 
-def test_maven_path(host):
-    """Validate maven path."""
-    f = host.file("/etc/profile.d/maven.sh")
+import testinfra
+import unittest
 
-    assert f.exists
+class Test(unittest.TestCase):
 
-    assert f.user == "root"
-    assert f.group == "root"
+    @classmethod
+    def setUpClass(cls):
 
-    assert f.mode == 0o644
+        cls.host = testinfra.get_host('docker://debian_11')
 
-    assert f.contains("M2_HOME=/opt/apache-maven-3.9.1")
-    assert f.contains("PATH=$PATH:$M2_HOME/bin")
+    def test_maven_path(self):
+        """Validate maven profile file."""
+        f = self.host.file("/etc/profile.d/maven.sh")
 
-def test_maven_installed(host):
-    """Validate maven installation."""
-    cmd = host.run(". /etc/profile.d/java.sh && . /etc/profile.d/maven.sh && mvn --version")
+        self.assertTrue(f.exists, msg="maven profile file missing")
 
-    assert cmd.succeeded
-    assert host.check_output(". /etc/profile.d/java.sh && . /etc/profile.d/maven.sh && mvn --version | grep Apache") == 'Apache Maven 3.9.1 (2e178502fcdbffc201671fb2537d0cb4b4cc58f8)'
+        self.assertEqual(f.user, "root", msg="maven profile file, incorrect user")
+        self.assertEqual(f.group, "root", msg="maven profile file, incorrect group")
+        self.assertEqual(f.mode, 0o644, msg="maven profile file, incorrect mode")
+
+        self.assertTrue(f.contains("M2_HOME=/opt/apache-maven-3.9.1"))
+        self.assertTrue( f.contains("PATH=$PATH:$M2_HOME/bin"))
+
+    def test_maven_installed(self):
+        """Validate maven installation."""
+        cmd = self.host.run(". /etc/profile.d/java.sh && . /etc/profile.d/maven.sh && mvn --version")
+
+        self.assertTrue(cmd.succeeded)
+        self.assertEqual(self.host.check_output(". /etc/profile.d/java.sh && . /etc/profile.d/maven.sh && mvn --version | grep Apache"), 'Apache Maven 3.9.1 (2e178502fcdbffc201671fb2537d0cb4b4cc58f8)')

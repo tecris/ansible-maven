@@ -9,7 +9,7 @@ lint: |
   ansible-lint .
 platforms:
   - name: debian_11
-    image: org.tecris/debian-11-jdk:23.03.26
+    image: org.tecris/debian-11-jdk:23.05.06
     pre_build_image: true
 provisioner:
   name: ansible

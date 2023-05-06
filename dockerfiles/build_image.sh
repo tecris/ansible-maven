@@ -7,16 +7,25 @@ if [ "$#" -ne 2 ]; then
 fi
 
 os=${1}
-version=${2}
+os_version=${2}
 
 # https://github.com/adoptium/temurin17-binaries/releases/latest
-jdk=OpenJDK17U-jdk_x64_linux_hotspot_17.0.6_10.tar.gz
+# given release jdk-17.0.7+7 -> jdk_version: 17.0.7 jdk_version_patch: 7
+jdk_version=17.0.7
+jdk_version_patch=7
+jdk_file_name=OpenJDK17U-jdk_x64_linux_hotspot_${jdk_version}_${jdk_version_patch}.tar.gz
 
-if [ ! -f ${jdk} ]; then
-    echo "File ${jdk} not found, download"
-    wget https://github.com/adoptium/temurin17-binaries/releases/download/jdk-17.0.6%2B10/OpenJDK17U-jdk_x64_linux_hotspot_17.0.6_10.tar.gz
+
+if [ ! -f ${jdk_file_name} ]; then
+    echo "File ${jdk_file_name} not found, downloading"
+    wget "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-${jdk_version}+${jdk_version_patch}/${jdk_file_name}"
 fi
 
-docker build --no-cache \
-    -t org.tecris/${os}-${version}-jdk:23.03.26 \
-    -f Dockerfile.${os}_jdk.${version} ./
+docker buildx build \
+    --build-arg jdk_version=${jdk_version} \
+    --build-arg jdk_version_patch=${jdk_version_patch} \
+    --no-cache \
+    --progress=plain \
+    -t org.tecris/${os}-${os_version}-jdk:23.05.06 \
+    -f Dockerfile.${os}_jdk.${os_version} \
+    ./
