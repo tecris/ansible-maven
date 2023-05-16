@@ -1,4 +1,6 @@
-FROM org.tecris/debian_11-systemd:23.05.06
+ARG TAG
+FROM org.tecris/debian_11-systemd:${TAG}
+
 
 ARG jdk_version
 ARG jdk_version_patch
