@@ -18,6 +18,7 @@
     dest: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
     url_username: '{{ maven_download_username }}'
     url_password: '{{ maven_download_password }}'
+    checksum: "sha512:{{ maven_download_url }}.sha512"
   when: maven_installed.rc != 0
 
 - name: Unarchive Maven Binaries
