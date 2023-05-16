@@ -8,8 +8,8 @@ lint: |
   yamllint .
   ansible-lint .
 platforms:
-  - name: debian_11
-    image: org.tecris/debian-11-jdk:23.05.06
+  - name: ${MOLECULE_SCENARIO_NAME}
+    image: org.tecris/debian-11-jdk:${TAG}
     pre_build_image: true
 provisioner:
   name: ansible

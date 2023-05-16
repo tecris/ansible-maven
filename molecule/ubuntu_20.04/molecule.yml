@@ -8,8 +8,8 @@ lint: |
   yamllint .
   ansible-lint .
 platforms:
-  - name: ubuntu_20.04
-    image: org.tecris/ubuntu-20.04-jdk:23.03.26
+  - name: ${MOLECULE_SCENARIO_NAME}
+    image: org.tecris/ubuntu-20.04-jdk:${TAG}
     pre_build_image: true
 provisioner:
   name: ansible

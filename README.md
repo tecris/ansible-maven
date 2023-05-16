@@ -13,7 +13,7 @@ Example Playbook
 ```
  - hosts: all
    roles:
-     - { role: tecris.maven, maven_major: 3, maven_version: 3.9.1, maven_home_parent_directory: /opt }
+     - { role: tecris.maven, maven_major: 3, maven_version: 3.9.2, maven_home_parent_directory: /opt }
 ```
 
 Role Variables
@@ -24,9 +24,9 @@ Role Variables
 |*Variable*  | *Default Value* |*Description* |
 | --- | --- | --- |
 | maven_major | 3 | MAJOR [version](http://semver.org/) |
-| maven_version | 3.9.1 | Version number|
+| maven_version | 3.9.2 | Version number|
 | maven_home_parent_directory | /opt | MAVEN_HOME parent directory|
-| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz| If using mirror/proxy (see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html)) |
+| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.9.2/binaries/apache-maven-3.9.2-bin.tar.gz| If using mirror/proxy (see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html)) |
 |maven_download_username||see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html) url_username option|
 |maven_download_password||see ansible [get_url](http://docs.ansible.com/ansible/latest/get_url_module.html) url_password option|
 
@@ -42,23 +42,23 @@ Tests
       # cd dockerfiles/molecule
       # ./build_image.sh
       ```
-    * Build test image (example for `debian 9`)
+    * Build test image (example for `debian 10`)
       * Step 1
         ```   
         # git clone https://github.com/tecris/dockerfiles
-        # cd dockerfiles/systemd/debian-9
-        # ./build_image.sh
+        # cd dockerfiles/systemd
+        # ./build_image.sh debian 10
         ```
       * Step 2 (add jdk to test image)
         ```   
         # git clone https://github.com/tecris/ansible-maven
         # cd ansible-maven/dockerfiles
-        # ./build_image.sh debian 9
+        # ./build_image.sh debian 10
         ```
   * Run molecule test
     ```   
     # git clone https://github.com/tecris/ansible-maven
     # cd ansible-maven
     # ./run_molecule.sh
-    # molecule test -s debian_9
+    # TAG=23.05.16 molecule test -s debian_10
     ```
