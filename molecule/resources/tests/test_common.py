@@ -23,6 +23,7 @@ class Test(unittest.TestCase):
         self.assertEqual(f.mode, 0o644, msg="maven profile file, incorrect mode")
 
         self.assertTrue(f.contains("M2_HOME=/opt/apache-maven-3.9.4"))
+
         self.assertTrue( f.contains("PATH=$PATH:$M2_HOME/bin"))
 
     def test_maven_installed(self):
