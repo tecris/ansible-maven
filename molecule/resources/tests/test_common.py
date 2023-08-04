@@ -22,7 +22,8 @@ class Test(unittest.TestCase):
         self.assertEqual(f.group, "root", msg="maven profile file, incorrect group")
         self.assertEqual(f.mode, 0o644, msg="maven profile file, incorrect mode")
 
-        self.assertTrue(f.contains("M2_HOME=/opt/apache-maven-3.9.3"))
+        self.assertTrue(f.contains("M2_HOME=/opt/apache-maven-3.9.4"))
+
         self.assertTrue( f.contains("PATH=$PATH:$M2_HOME/bin"))
 
     def test_maven_installed(self):
@@ -31,4 +32,4 @@ class Test(unittest.TestCase):
 
         self.assertTrue(cmd.succeeded)
         # https://maven.apache.org/install.html
-        self.assertEqual(self.host.check_output(". /etc/profile.d/java.sh && . /etc/profile.d/maven.sh && mvn --version | grep Apache"), 'Apache Maven 3.9.3 (21122926829f1ead511c958d89bd2f672198ae9f)')
+        self.assertEqual(self.host.check_output(". /etc/profile.d/java.sh && . /etc/profile.d/maven.sh && mvn --version | grep Apache"), 'Apache Maven 3.9.4 (dfbb324ad4a7c8fb0bf182e6d91b0ae20e3d2dd9)')
