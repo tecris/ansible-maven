@@ -10,8 +10,8 @@ os=${1}
 os_version=${2}
 
 # https://github.com/adoptium/temurin17-binaries/releases/latest
-# given release jdk-17.0.7+7 -> jdk_version: 17.0.7 jdk_version_patch: 7
-jdk_version=17.0.7
+# given release jdk-17.0.8+7 -> jdk_version: 17.0.8 jdk_version_patch: 7
+jdk_version=17.0.8
 jdk_version_patch=7
 jdk_file_name=OpenJDK17U-jdk_x64_linux_hotspot_${jdk_version}_${jdk_version_patch}.tar.gz
 
