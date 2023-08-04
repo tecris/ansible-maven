@@ -21,7 +21,7 @@ if [ ! -f ${jdk_file_name} ]; then
     wget "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-${jdk_version}+${jdk_version_patch}/${jdk_file_name}"
 fi
 
-TAG=23.06.28
+TAG=23.08.04
 docker buildx build \
     --build-arg jdk_version=${jdk_version} \
     --build-arg jdk_version_patch=${jdk_version_patch} \
