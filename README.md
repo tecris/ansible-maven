@@ -13,7 +13,7 @@ Example Playbook
 ```
  - hosts: all
    roles:
-     - { role: tecris.maven, maven_major: 3, maven_version: 3.9.4, maven_home_parent_directory: /opt }
+     - { role: tecris.maven, maven_major: 3, maven_version: 3.9.5, maven_home_parent_directory: /opt }
 ```
 
 Role Variables
@@ -24,9 +24,9 @@ Role Variables
 |*Variable*  | *Default Value* |*Description* |
 | --- | --- | --- |
 | maven_major | 3 | MAJOR [version](http://semver.org/) |
-| maven_version | 3.9.4 | Version number|
+| maven_version | 3.9.5 | Version number|
 | maven_home_parent_directory | /opt | MAVEN_HOME parent directory|
-| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz| If using mirror/proxy (see [ansible.builtin.get_url](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html)) |
+| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.9.5/binaries/apache-maven-3.9.5-bin.tar.gz| If using mirror/proxy (see [ansible.builtin.get_url](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html)) |
 |maven_download_username||see [url_username](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html#parameter-url_username) parameter|
 |maven_download_password||see [url_password](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html#parameter-url_password) parameter|
 
@@ -39,7 +39,7 @@ Tests
     * Buid molecule docker image
       ```
       # git clone https://github.com/tecris/dockerfiles
-      # cd dockerfiles/molecule/5
+      # cd dockerfiles/molecule/6
       # ./build_image.sh
       ```
     * Build test image (example for `debian 10`)
