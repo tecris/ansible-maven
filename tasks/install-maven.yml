@@ -12,39 +12,38 @@
   when: maven_installed.rc != 0
   changed_when: no
 
-- name: Downloading Maven Binaries
-  ansible.builtin.get_url:
-    url: '{{ maven_download_url }}'
-    dest: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
-    url_username: '{{ maven_download_username }}'
-    url_password: '{{ maven_download_password }}'
-    checksum: "sha512:{{ maven_download_url }}.sha512"
-  when: maven_installed.rc != 0
+- name: Download, install and configure Maven
+  block:
 
-- name: Unarchive Maven Binaries
-  ansible.builtin.unarchive:
-    src: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
-    dest: '{{ maven_home_parent_directory }}'
-    copy: no
-  when: maven_installed.rc != 0
+    - name: Download Maven Binaries
+      ansible.builtin.get_url:
+        url: '{{ maven_download_url }}'
+        dest: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
+        url_username: '{{ maven_download_username }}'
+        url_password: '{{ maven_download_password }}'
+        checksum: "sha512:{{ maven_download_url }}.sha512"
 
-- name: Remove old path configuration
-  ansible.builtin.file:
-    path: /etc/profile.d/maven.sh
-    state: absent
-  when: maven_installed.rc != 0
+    - name: Unarchive Maven Binaries
+      ansible.builtin.unarchive:
+        src: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
+        dest: '{{ maven_home_parent_directory }}'
+        copy: no
 
-- name: Maven path configuration
-  ansible.builtin.template:
-    src:  'maven.sh.j2'
-    dest: '/etc/profile.d/maven.sh'
-    owner: root
-    group: root
-    mode: u=rw,g=r,o=r
-  when: maven_installed.rc != 0
+    - name: Remove old path configuration
+      ansible.builtin.file:
+        path: /etc/profile.d/maven.sh
+        state: absent
 
-- name: Cleaning Up
-  ansible.builtin.file:
-    state: absent
-    path: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
+    - name: Maven path configuration
+      ansible.builtin.template:
+        src:  'maven.sh.j2'
+        dest: '/etc/profile.d/maven.sh'
+        owner: root
+        group: root
+        mode: u=rw,g=r,o=r
+
+    - name: Cleaning Up
+      ansible.builtin.file:
+        state: absent
+        path: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
   when: maven_installed.rc != 0
