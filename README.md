@@ -1,19 +1,22 @@
 # Maven ansible role
 
+Changes related to new https://galaxy.ansible.com (Nov.2023)
+--------
+Out of my control, with the import of `v3.9.5` role name has changed (from `tecris.maven` to `tecris.ansible-maven`) as https://galaxy.ansible.com reincarnated
 
 Installation
 ------------
 
- `$ ansible-galaxy install tecris.maven             # latest version`
+ `$ ansible-galaxy install tecris.ansible-maven             # latest version`
  
- `$ ansible-galaxy install tecris.maven,17.10.28    # specific version`
+ `$ ansible-galaxy install tecris.ansible-maven,17.10.28    # specific version`
 
 Example Playbook
 ----------------
 ```
  - hosts: all
    roles:
-     - { role: tecris.maven, maven_major: 3, maven_version: 3.9.5, maven_home_parent_directory: /opt }
+     - { role: tecris.ansible-maven, maven_major: 3, maven_version: 3.9.5, maven_home_parent_directory: /opt }
 ```
 
 Role Variables
