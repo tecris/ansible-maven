@@ -1,18 +1,9 @@
 #!/bin/bash
 
-if [ "$#" -ne 2 ]; then
-    echo -e "Usage: $0 <os> <version>"
-    echo -e "Example: $0 ubuntu 22.04"
-    exit
-fi
-
-os=${1}
-os_version=${2}
-
 # https://github.com/adoptium/temurin17-binaries/releases/latest
 # given release jdk-17.0.8+7 -> jdk_version: 17.0.8 jdk_version_patch: 7
-jdk_version=17.0.8
-jdk_version_patch=7
+jdk_version=17.0.9
+jdk_version_patch=9
 jdk_file_name=OpenJDK17U-jdk_x64_linux_hotspot_${jdk_version}_${jdk_version_patch}.tar.gz
 
 
@@ -21,13 +12,40 @@ if [ ! -f ${jdk_file_name} ]; then
     wget "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-${jdk_version}+${jdk_version_patch}/${jdk_file_name}"
 fi
 
-TAG=23.08.04
-docker buildx build \
+TAG=23.12.02
+
+function build_image() {
+  os=${1}
+  os_version=${2}
+  IMAGE_NAME=org.tecris/${os}-${os_version}-jdk:${TAG}
+  echo "=================================================="
+  echo "building: ${IMAGE_NAME}"
+  echo "=================================================="
+
+  docker buildx use default    # to be able to use local images
+  docker buildx build \
     --build-arg jdk_version=${jdk_version} \
     --build-arg jdk_version_patch=${jdk_version_patch} \
     --build-arg TAG=${TAG} \
     --no-cache \
     --progress=plain \
-    -t org.tecris/${os}-${os_version}-jdk:${TAG} \
+    --load \
+    -t ${IMAGE_NAME} \
     -f Dockerfile.${os}_jdk.${os_version} \
     ./
+
+}
+
+declare -A distrubution_array
+distrubution_array[debian]="10,11"
+distrubution_array[ubuntu]="18.04,20.04,22.04"
+
+for distribution in "${!distrubution_array[@]}"
+do
+  os=${distribution}
+  os_version_list=${distrubution_array[${distribution}]}
+  for os_version in ${distrubution_array[${distribution}]//,/ }
+  do
+    build_image ${os} ${os_version}
+  done
+done
