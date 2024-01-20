@@ -2,8 +2,8 @@
 
 # https://github.com/adoptium/temurin17-binaries/releases/latest
 # given release jdk-17.0.8+7 -> jdk_version: 17.0.8 jdk_version_patch: 7
-jdk_version=17.0.9
-jdk_version_patch=9
+jdk_version=17.0.10
+jdk_version_patch=7
 jdk_file_name=OpenJDK17U-jdk_x64_linux_hotspot_${jdk_version}_${jdk_version_patch}.tar.gz
 
 
@@ -12,12 +12,12 @@ if [ ! -f ${jdk_file_name} ]; then
     wget "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-${jdk_version}+${jdk_version_patch}/${jdk_file_name}"
 fi
 
-TAG=23.12.02
+IMAGE_TAG=$(date +"%y.%m.%d")
 
 function build_image() {
   os=${1}
   os_version=${2}
-  IMAGE_NAME=org.tecris/${os}-${os_version}-jdk:${TAG}
+  IMAGE_NAME=org.tecris/${os}-${os_version}-jdk:${IMAGE_TAG}
   echo "=================================================="
   echo "building: ${IMAGE_NAME}"
   echo "=================================================="
