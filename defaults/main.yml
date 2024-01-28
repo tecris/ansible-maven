@@ -4,6 +4,6 @@ maven_major: 3
 maven_version: 3.9.6
 maven_home_parent_directory: /opt
 maven_file_name: apache-maven-{{ maven_version }}-bin.tar.gz
-maven_download_url: 'http://www.apache.org/dist/maven/maven-{{ maven_major }}/{{ maven_version }}/binaries/{{ maven_file_name }}'
+maven_download_url: 'http://dlcdn.apache.org/maven/maven-{{ maven_major }}/{{ maven_version }}/binaries/{{ maven_file_name }}'
 maven_download_username: ''
 maven_download_password: ''
