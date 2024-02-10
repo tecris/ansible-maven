@@ -26,7 +26,7 @@ function build_image() {
   docker buildx build \
     --build-arg jdk_version=${jdk_version} \
     --build-arg jdk_version_patch=${jdk_version_patch} \
-    --build-arg TAG=${TAG} \
+    --build-arg TAG=${IMAGE_TAG} \
     --no-cache \
     --progress=plain \
     --load \
@@ -37,8 +37,7 @@ function build_image() {
 }
 
 declare -A distrubution_array
-distrubution_array[debian]="10,11"
-distrubution_array[ubuntu]="18.04,20.04,22.04"
+distrubution_array[ubuntu]="22.04"
 
 for distribution in "${!distrubution_array[@]}"
 do
