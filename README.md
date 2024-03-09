@@ -65,3 +65,12 @@ Tests
     # ./run_molecule.sh
     # TAG=23.08.04 molecule test -s debian_10
     ```
+
+Housekeeping
+-----
+* ```
+  ansible-galaxy role import --token=the_token tecris ansible-maven
+  ```
+
+* https://ansible.readthedocs.io/projects/galaxy-ng/en/latest/community/userguide/#importing-roles
+* https://forum.ansible.com/t/not-being-able-to-upload-new-versions-of-role-galaxy-new-feature-or-bug/2087/3
