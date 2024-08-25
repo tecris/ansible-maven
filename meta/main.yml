@@ -117,9 +117,10 @@ galaxy_info:
   #  - utopic
   #  - vivid
   #  - xenial
-    - bionic
+  # - bionic
     - focal
     - jammy
+    - noble
   #- name: SLES
   #  versions:
   #  - all
@@ -142,8 +143,9 @@ galaxy_info:
   #  - squeeze
   #  - wheezy
   #  - stretch
-    - buster
+  # - buster
     - bullseye
+    - bookworm
   galaxy_tags:
     - development
     - maven
