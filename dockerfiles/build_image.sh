@@ -1,15 +1,16 @@
 #!/bin/bash
 
-# https://github.com/adoptium/temurin17-binaries/releases/latest
-# given release jdk-17.0.8+7 -> jdk_version: 17.0.8 jdk_version_patch: 7
-jdk_version=17.0.10
+# https://github.com/adoptium/temurin21-binaries/releases/latest
+# given release jdk-21.0.4+7 -> jdk_version: 21.0.4 jdk_version_patch: 7
+jdk_major_version=21
+jdk_version=${jdk_major_version}.0.4
 jdk_version_patch=7
-jdk_file_name=OpenJDK17U-jdk_x64_linux_hotspot_${jdk_version}_${jdk_version_patch}.tar.gz
+jdk_file_name=OpenJDK${jdk_major_version}U-jdk_x64_linux_hotspot_${jdk_version}_${jdk_version_patch}.tar.gz
 
 
 if [ ! -f ${jdk_file_name} ]; then
     echo "File ${jdk_file_name} not found, downloading"
-    wget "https://github.com/adoptium/temurin17-binaries/releases/download/jdk-${jdk_version}+${jdk_version_patch}/${jdk_file_name}"
+    wget "https://github.com/adoptium/temurin${jdk_major_version}-binaries/releases/download/jdk-${jdk_version}+${jdk_version_patch}/${jdk_file_name}"
 fi
 
 IMAGE_TAG=$(date +"%y.%m.%d")
@@ -37,7 +38,8 @@ function build_image() {
 }
 
 declare -A distrubution_array
-distrubution_array[ubuntu]="22.04"
+distrubution_array[debian]="11,12"
+distrubution_array[ubuntu]="20.04,22.04,24.04"
 
 for distribution in "${!distrubution_array[@]}"
 do
