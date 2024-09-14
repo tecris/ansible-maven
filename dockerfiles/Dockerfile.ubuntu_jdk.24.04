@@ -1,5 +1,5 @@
 ARG TAG
-FROM org.tecris/ubuntu_22.04-systemd:${TAG}
+FROM org.tecris/ubuntu_24.04-systemd:${TAG}
 
 
 ARG jdk_version
