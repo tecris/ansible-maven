@@ -1,5 +1,5 @@
 ARG TAG
-FROM org.tecris/debian_11-systemd:${TAG}
+FROM org.tecris/debian_12-systemd:${TAG}
 
 
 ARG jdk_version
