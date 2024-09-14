@@ -9,7 +9,7 @@ lint: |
   ansible-lint .
 platforms:
   - name: ${MOLECULE_SCENARIO_NAME}
-    image: tecristea/debian-10-jdk:${TAG}
+    image: org.tecris/debian-12-jdk:${TAG}
     pre_build_image: true
 provisioner:
   name: ansible

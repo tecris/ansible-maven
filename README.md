@@ -2,7 +2,7 @@
 
 Changes related to new https://galaxy.ansible.com (Nov.2023)
 --------
-Out of my control, with the import of `v3.9.6` role name has changed (from `tecris.maven` to `tecris.ansible-maven`) as https://galaxy.ansible.com reincarnated
+Out of my control, with the import of `v3.9.7` role name has changed (from `tecris.maven` to `tecris.ansible-maven`) as https://galaxy.ansible.com reincarnated
 
 Installation
 ------------
@@ -16,7 +16,7 @@ Example Playbook
 ```
  - hosts: all
    roles:
-     - { role: tecris.ansible-maven, maven_major: 3, maven_version: 3.9.6, maven_home_parent_directory: /opt }
+     - { role: tecris.ansible-maven, maven_major: 3, maven_version: 3.9.7, maven_home_parent_directory: /opt }
 ```
 
 Role Variables
@@ -27,9 +27,9 @@ Role Variables
 |*Variable*  | *Default Value* |*Description* |
 | --- | --- | --- |
 | maven_major | 3 | MAJOR [version](http://semver.org/) |
-| maven_version | 3.9.6 | Version number|
+| maven_version | 3.9.7 | Version number|
 | maven_home_parent_directory | /opt | MAVEN_HOME parent directory|
-| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.9.6/binaries/apache-maven-3.9.6-bin.tar.gz| If using mirror/proxy (see [ansible.builtin.get_url](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html)) |
+| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.9.7/binaries/apache-maven-3.9.7-bin.tar.gz| If using mirror/proxy (see [ansible.builtin.get_url](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html)) |
 |maven_download_username||see [url_username](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html#parameter-url_username) parameter|
 |maven_download_password||see [url_password](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html#parameter-url_password) parameter|
 

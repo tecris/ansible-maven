@@ -16,7 +16,7 @@ galaxy_info:
   # - CC-BY
   license: FREE, NO LICENSE
 
-  min_ansible_version: 2.4
+  min_ansible_version: 2.17
 
   # Optionally specify the branch Galaxy will use when accessing the GitHub
   # repo for this role. During role install, if no tags are available,
@@ -117,9 +117,10 @@ galaxy_info:
   #  - utopic
   #  - vivid
   #  - xenial
-    - bionic
+  # - bionic
     - focal
     - jammy
+    - noble
   #- name: SLES
   #  versions:
   #  - all
@@ -142,8 +143,9 @@ galaxy_info:
   #  - squeeze
   #  - wheezy
   #  - stretch
-    - buster
+  # - buster
     - bullseye
+    - bookworm
   galaxy_tags:
     - development
     - maven
