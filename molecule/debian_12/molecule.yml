@@ -1,0 +1,19 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint .
+platforms:
+  - name: ${MOLECULE_SCENARIO_NAME}
+    image: org.tecris/debian-12-jdk:${TAG}
+    pre_build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: testinfra
+  additional_files_or_dirs:
+    - ../../resources/tests
