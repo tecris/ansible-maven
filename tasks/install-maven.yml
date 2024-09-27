@@ -15,13 +15,23 @@
 - name: Download, install and configure Maven
   block:
 
+    - name: Get Checksum
+      uri:
+        url: "{{ maven_download_url }}.sha512"
+        return_content: true
+      register: url_sha512
+
+    - name: Set Checksum fact
+      set_fact:
+        maven_checksum: "{{ url_sha512.content.split('  ')[0] }}"
+
     - name: Download Maven Binaries
       ansible.builtin.get_url:
         url: '{{ maven_download_url }}'
         dest: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
         url_username: '{{ maven_download_username }}'
         url_password: '{{ maven_download_password }}'
-        checksum: "sha512:{{ maven_download_url }}.sha512"
+        checksum: "sha512:{{ maven_checksum }}"
 
     - name: Unarchive Maven Binaries
       ansible.builtin.unarchive:
