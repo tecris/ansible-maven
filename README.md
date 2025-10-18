@@ -12,7 +12,7 @@ Example Playbook
 ```
  - hosts: all
    roles:
-     - { role: tecris.ansible-maven, maven_major: 3, maven_version: 3.9.9, maven_home_parent_directory: /opt }
+     - { role: tecris.ansible-maven, maven_major: 3, maven_version: 3.9.11, maven_home_parent_directory: /opt }
 ```
 
 Role Variables
@@ -23,9 +23,9 @@ Role Variables
 |*Variable*  | *Default Value* |*Description* |
 | --- | --- | --- |
 | maven_major | 3 | MAJOR [version](http://semver.org/) |
-| maven_version | 3.9.9 | Version number|
+| maven_version | 3.9.11 | Version number|
 | maven_home_parent_directory | /opt | MAVEN_HOME parent directory|
-| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.9.9/binaries/apache-maven-3.9.9-bin.tar.gz| If using mirror/proxy (see [ansible.builtin.get_url](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html)) |
+| maven_download_url |http://www.apache.org/dist/maven/maven-3/3.9.11/binaries/apache-maven-3.9.11-bin.tar.gz| If using mirror/proxy (see [ansible.builtin.get_url](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html)) |
 |maven_download_username||see [url_username](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html#parameter-url_username) parameter|
 |maven_download_password||see [url_password](https://docs.ansible.com/ansible/latest/collections/ansible/builtin/get_url_module.html#parameter-url_password) parameter|
 
@@ -38,7 +38,7 @@ Tests
     * Buid molecule docker image
       ```
       # git clone https://github.com/tecris/dockerfiles
-      # cd dockerfiles/molecule/6
+      # cd dockerfiles/molecule/25.09
       # ./build_image.sh
       ```
     * Build test image (example for `debian 10`)
@@ -46,20 +46,20 @@ Tests
         ```   
         # git clone https://github.com/tecris/dockerfiles
         # cd dockerfiles/systemd
-        # ./build_image.sh debian 10
+        # ./build_images.sh
         ```
       * Step 2 (add jdk to test image)
         ```   
         # git clone https://github.com/tecris/ansible-maven
         # cd ansible-maven/dockerfiles
-        # ./build_image.sh debian 10
+        # ./build_images.sh
         ```
   * Run molecule test
     ```   
     # git clone https://github.com/tecris/ansible-maven
     # cd ansible-maven
     # ./run_molecule.sh
-    # TAG=23.08.04 molecule test -s debian_10
+    # TAG=23.08.04 molecule test -s debian_11
     ```
 
 Housekeeping
