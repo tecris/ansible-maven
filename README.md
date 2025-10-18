@@ -38,7 +38,7 @@ Tests
     * Buid molecule docker image
       ```
       # git clone https://github.com/tecris/dockerfiles
-      # cd dockerfiles/molecule/6
+      # cd dockerfiles/molecule/25.09
       # ./build_image.sh
       ```
     * Build test image (example for `debian 10`)
@@ -46,20 +46,20 @@ Tests
         ```   
         # git clone https://github.com/tecris/dockerfiles
         # cd dockerfiles/systemd
-        # ./build_image.sh debian 10
+        # ./build_images.sh
         ```
       * Step 2 (add jdk to test image)
         ```   
         # git clone https://github.com/tecris/ansible-maven
         # cd ansible-maven/dockerfiles
-        # ./build_image.sh debian 10
+        # ./build_images.sh
         ```
   * Run molecule test
     ```   
     # git clone https://github.com/tecris/ansible-maven
     # cd ansible-maven
     # ./run_molecule.sh
-    # TAG=23.08.04 molecule test -s debian_10
+    # TAG=23.08.04 molecule test -s debian_11
     ```
 
 Housekeeping
