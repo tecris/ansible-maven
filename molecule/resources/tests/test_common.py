@@ -32,4 +32,4 @@ class Test(unittest.TestCase):
 
         self.assertTrue(cmd.succeeded)
         # https://maven.apache.org/install.html
-        self.assertEqual(self.host.check_output(". /etc/profile.d/java.sh && . /etc/profile.d/maven.sh && mvn --version | grep Apache"), 'Apache Maven 3.9.12 (3e54c93a704957b63ee3494413a2b544fd3d825b)')
+        self.assertEqual(self.host.check_output(". /etc/profile.d/java.sh && . /etc/profile.d/maven.sh && mvn --version | grep Apache"), 'Apache Maven 3.9.12 (848fbb4bf2d427b72bdb2471c22fced7ebd9a7a1)')
