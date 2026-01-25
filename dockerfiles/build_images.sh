@@ -1,18 +1,19 @@
 #!/bin/bash
 
 # https://github.com/adoptium/temurin25-binaries/releases/latest
-# given release jdk-25+36 -> jdk_major_version / jdk_version: 25 jdk_version_patch: 36
-# https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25%2B36/OpenJDK25U-jdk_x64_linux_hotspot_25_36.tar.gz
+# given release jdk-25.0.2+10 -> jdk_major_version / jdk_version: 25.0.2 jdk_version_patch: 10
+# https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.2%2B10/OpenJDK25U-jdk_x64_linux_hotspot_25.0.2_10.tar.gz
+# https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.2+10/OpenJDK25U-jdk_x64_linux_hotspot_25_10.tar.gz
 
 jdk_major_version=25
-jdk_version=${jdk_major_version}
-jdk_version_patch=36
-jdk_file_name=OpenJDK${jdk_major_version}U-jdk_x64_linux_hotspot_${jdk_major_version}_${jdk_version_patch}.tar.gz
+jdk_version=${jdk_major_version}.0.2
+jdk_version_patch=10
+jdk_file_name=OpenJDK${jdk_major_version}U-jdk_x64_linux_hotspot_${jdk_version}_${jdk_version_patch}.tar.gz
 
 
 if [ ! -f ${jdk_file_name} ]; then
     echo "File ${jdk_file_name} not found, downloading"
-    wget "https://github.com/adoptium/temurin${jdk_major_version}-binaries/releases/download/jdk-${jdk_major_version}+${jdk_version_patch}/${jdk_file_name}"
+    wget "https://github.com/adoptium/temurin${jdk_major_version}-binaries/releases/download/jdk-${jdk_version}+${jdk_version_patch}/${jdk_file_name}"
 fi
 
 
@@ -29,6 +30,7 @@ function build_image() {
   docker buildx use default    # to be able to use local images
   docker buildx build \
     --build-arg jdk_version=${jdk_version} \
+    --build-arg jdk_major_version=${jdk_major_version} \
     --build-arg jdk_version_patch=${jdk_version_patch} \
     --build-arg TAG=${IMAGE_TAG} \
     --no-cache \
@@ -42,7 +44,7 @@ function build_image() {
 
 declare -A distrubution_array
 distrubution_array[debian]="11,12"
-distrubution_array[ubuntu]="20.04,22.04,24.04"
+distrubution_array[ubuntu]="22.04,24.04"
 
 for distribution in "${!distrubution_array[@]}"
 do
