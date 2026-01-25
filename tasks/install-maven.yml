@@ -1,49 +1,60 @@
 ---
 # tasks file for apache-maven
-- name: Check whether /etc/profile.d/maven.sh contains "/opt/apache-maven{maven_version}"
-  ansible.builtin.command: grep -Fxq "M2_HOME=/opt/apache-maven-{{ maven_version }}" /etc/profile.d/maven.sh
-  register: maven_installed
-  check_mode: no
-  ignore_errors: yes
-  changed_when: no
 
-- name: Tell the world maven is not installed
-  ansible.builtin.debug: msg="Maven is not installed"
-  when: maven_installed.rc != 0
-  changed_when: no
+- name: Check if desired Maven version is installed
+  ansible.builtin.stat:
+    path: "{{ maven_home_parent_directory }}/apache-maven-{{ maven_version }}"
+  register: maven_dir
 
-- name: Download, install and configure Maven
+- name: Install or update Maven
   block:
 
-    - name: Download Maven Binaries
+    - name: Download Maven checksum file
       ansible.builtin.get_url:
-        url: '{{ maven_download_url }}'
-        dest: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
-        url_username: '{{ maven_download_username }}'
-        url_password: '{{ maven_download_password }}'
-        checksum: "sha512:{{ maven_download_url }}.sha512"
+        url: "{{ maven_download_url }}.sha512"
+        dest: "/tmp/{{ maven_file_name }}.sha512"
+        mode: "0644"
 
-    - name: Unarchive Maven Binaries
+    - name: Read Maven checksum
+      ansible.builtin.slurp:
+        src: "/tmp/{{ maven_file_name }}.sha512"
+      register: maven_checksum_file
+
+    - name: Set Maven checksum fact
+      ansible.builtin.set_fact:
+        maven_checksum: "{{ maven_checksum_file.content | b64decode | trim }}"
+
+    - name: Download Maven archive
+      ansible.builtin.get_url:
+        url: "{{ maven_download_url }}"
+        dest: "{{ maven_home_parent_directory }}/{{ maven_file_name }}"
+        checksum: "sha512:{{ maven_checksum }}"
+        mode: "0644"
+
+    - name: Extract Maven
       ansible.builtin.unarchive:
-        src: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
-        dest: '{{ maven_home_parent_directory }}'
-        copy: no
+        src: "{{ maven_home_parent_directory }}/{{ maven_file_name }}"
+        dest: "{{ maven_home_parent_directory }}"
+        remote_src: true
+        creates: "{{ maven_home_parent_directory }}/apache-maven-{{ maven_version }}"
 
-    - name: Remove old path configuration
-      ansible.builtin.file:
-        path: /etc/profile.d/maven.sh
-        state: absent
-
-    - name: Maven path configuration
+    - name: Install Maven profile script
       ansible.builtin.template:
-        src:  'maven.sh.j2'
-        dest: '/etc/profile.d/maven.sh'
+        src: "maven.sh.j2"
+        dest: "/etc/profile.d/maven.sh"
         owner: root
         group: root
-        mode: u=rw,g=r,o=r
+        mode: "0644"
 
-    - name: Cleaning Up
+    - name: Remove downloaded archive
       ansible.builtin.file:
+        path: "{{ maven_home_parent_directory }}/{{ maven_file_name }}"
         state: absent
-        path: '{{ maven_home_parent_directory }}/{{ maven_file_name }}'
-  when: maven_installed.rc != 0
+
+    - name: Remove temporary checksum file
+      ansible.builtin.file:
+        path: "/tmp/{{ maven_file_name }}.sha512"
+        state: absent
+
+  when: not maven_dir.stat.exists
+
