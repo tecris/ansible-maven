@@ -58,8 +58,7 @@ Tests
     ```   
     # git clone https://github.com/tecris/ansible-maven
     # cd ansible-maven
-    # ./run_molecule.sh
-    # TAG=23.08.04 molecule test -s debian_11
+    # ./run_tests.sh
     ```
 
 Housekeeping
