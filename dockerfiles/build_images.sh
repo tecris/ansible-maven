@@ -44,7 +44,7 @@ function build_image() {
 
 declare -A distrubution_array
 distrubution_array[debian]="11,12"
-distrubution_array[ubuntu]="20.04,22.04,24.04"
+distrubution_array[ubuntu]="22.04,24.04"
 
 for distribution in "${!distrubution_array[@]}"
 do
