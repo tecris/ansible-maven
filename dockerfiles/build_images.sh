@@ -54,5 +54,4 @@ do
   do
     build_image ${os} ${os_version}
   done
-  exit 0
 done
