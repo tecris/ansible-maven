@@ -12,18 +12,20 @@ function run_test() {
   echo "testing: ${os} version: ${os_version}"
   echo "=================================================="
 
+
+  IMAGE_TAG=$(date +"%y.%m.%d")
   docker run --rm -it \
     -v $(pwd):/molecule/ansible-maven \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -w /molecule/ansible-maven \
-    -e TAG=24.08.25 \
-    org.tecris/molecule:24.09.14 \
+    -e TAG=${IMAGE_TAG} \
+    org.tecris/molecule:${IMAGE_TAG} \
     molecule test -s ${os}_${os_version}
 }
 
 declare -A distrubution_array
 distrubution_array[debian]="11,12"
-distrubution_array[ubuntu]="20.04,22.04,24.04"
+distrubution_array[ubuntu]="22.04,24.04"
 
 for distribution in "${!distrubution_array[@]}"
 do
