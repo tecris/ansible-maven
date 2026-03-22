@@ -118,7 +118,7 @@ galaxy_info:
   #  - vivid
   #  - xenial
   # - bionic
-    - focal
+  # - focal
     - jammy
     - noble
   #- name: SLES
@@ -146,6 +146,7 @@ galaxy_info:
   # - buster
     - bullseye
     - bookworm
+    - trixie
   galaxy_tags:
     - development
     - maven
