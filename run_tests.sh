@@ -24,7 +24,7 @@ function run_test() {
 }
 
 declare -A distrubution_array
-distrubution_array[debian]="11,12"
+distrubution_array[debian]="11,12,13"
 distrubution_array[ubuntu]="22.04,24.04"
 
 for distribution in "${!distrubution_array[@]}"
